@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * _strcmp -       compares strings
- * @opcode:        string to be compared
- * @list:          string to be compared
- * Return:         0
+ * _strcmp - compares strings
+ * @opcode: string to be compared
+ * @list: string to be compared
+ * Return :0
  */
 int _strcmp(char *opcode, char *list)
 {
@@ -26,9 +26,9 @@ int _strcmp(char *opcode, char *list)
 }
 
 /**
- * nlfind -        finds newline
- * @list:          the string to find \n
- * Return:         1 || 0
+ * nlfind - finds newline
+ * @list: the string to find \n
+ * Return: 1 || 0
  */
 int nlfind(char *list)
 {
@@ -50,10 +50,10 @@ int nlfind(char *list)
 }
 
 /**
- * pushint -       int for push opcode
- * @list:          the content of the file
- * @ln:            line number
- * Return:         the number
+ * pushint -int for push opcode
+ * @list: the content of the file
+ * @ln: line number
+ * Return: the number
  */
 int pushint(char *list, int ln)
 {
@@ -89,10 +89,10 @@ int pushint(char *list, int ln)
 }
 
 /**
- * combfind -      finds nonnumbers and number combinations
- * @list:          the string
- * @ln:            line number
- * Return:         1
+ * combfind - finds nonnumbers and number combinations
+ * @list: the string
+ * @ln: line number
+ * Return: 1
  */
 int combfind(char *list, int ln)
 {
