@@ -1,9 +1,9 @@
 #include "monty.h"
 
 /**
- * free_stack -    frees the singly linked list
- * @head:          pointer to list
- * Return:         Nothing
+ * free_stack - frees the singly linked list
+ * @head: pointer to list
+ * Return: Nothing
  */
 void free_stack(stack_t *head)
 {
@@ -21,9 +21,9 @@ void free_stack(stack_t *head)
 }
 
 /**
- * free_list -     frees getline list
- * @a:             pointer to array of strings
- * Return:         Nothing
+ * free_list - frees getline list
+ * @a: pointer to array of strings
+ * Return: Nothing
  */
 void free_list(char *a[])
 {
