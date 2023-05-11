@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * main -          monty interperter
- * @ac:            the number of arguments
- * @av:            the arguments
- * Return:         void
+ * main - monty interperter
+ * @ac: the number of arguments
+ * @av: the arguments
+ * Return: void
  */
 int main(int ac, char *av[])
 {
@@ -36,10 +36,10 @@ int main(int ac, char *av[])
 }
 
 /**
- * execute -       executes opcodes
- * @string:        contents of file
- * @stack:         the list
- * Return:         void
+ * execute - executes opcodes
+ * @string: contents of file
+ * @stack: the list
+ * Return: void
  */
 
 void execute(char *string[], stack_t *stack)
