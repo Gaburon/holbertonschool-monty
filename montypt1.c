@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * pall -          Print all values on the stack
- * @stack:         pointer to head of stack
- * @line_num:      file's line number
- * Return:         Void
+ * pall - Print all values on the stack
+ * @stack: pointer to head of stack
+ * @line_num: file's line number
+ * Return: Void
  */
 
 void pall(stack_t **stack, unsigned int line_num)
@@ -49,10 +49,10 @@ void push(stack_t **stack, unsigned int line_num, int n)
 
 
 /**
- * pop -           Removes the top element of the stack
- * @stack:         pointer to head of stack
- * @line_num:      file's line number
- * Return:         Void
+ * pop - Removes the top element of the stack
+ * @stack: pointer to head of stack
+ * @line_num: file's line number
+ * Return: Void
  */
 
 void pop(stack_t **stack, unsigned int line_num)
@@ -74,10 +74,10 @@ void pop(stack_t **stack, unsigned int line_num)
 }
 
 /**
- * swap -          Swaps the top two elements of the stack
- * @stack:         pointer to head of stack
- * @line_num:      file's line number
- * Return:         Void
+ * swap - Swaps the top two elements of the stack
+ * @stack: pointer to head of stack
+ * @line_num: file's line number
+ * Return:  Void
  */
 void swap(stack_t **stack, unsigned int line_num)
 {
