@@ -44,15 +44,6 @@ int main(int ac, char *av[])
 
 void execute(char *string[], stack_t *stack)
 {
-    char *token;
-    stack_t *stack = NULL;
-
-    token = strtok(line, " \t\n");
-    if (token == NULL || strncmp(token, "#", 1) == 0)
-    {
-        free(line);
-        return;
-    }
 	int ln, n, i;
 
 	instruction_t st[] = {
