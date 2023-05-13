@@ -9,10 +9,10 @@
 int main(int ac, char *av[])
 {
 	stack_t *stack = NULL;
-	static char *string[1000] = {NULL};
+	static char *string[3000] = {NULL};
 	int n = 0;
 	FILE *fd;
-	size_t bufsize = 1000;
+	size_t bufsize = 3000;
 
 	if (ac != 2)
 	{
