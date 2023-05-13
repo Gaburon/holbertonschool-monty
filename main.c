@@ -1,126 +1,86 @@
 #include "monty.h"
 
 /**
- * main - Programa principal para el intérprete Monty
- *
- * @argc: Cantidad de argumentos en la línea de comandos
- * @argv: Array de argumentos en la línea de comandos
- *
- * Return: 0 en caso de éxito, 1 en caso de error
+ * main - monty interperter
+ * @ac: the number of arguments
+ * @av: the arguments
+ * Return: void
  */
-int main(int argc, char *argv[])
+int main(int ac, char *av[])
 {
-    if (argc != 2)
-    {
-        fprintf(stderr, "Usage: monty file\n");
-        return (EXIT_FAILURE);
-    }
+	stack_t *stack = NULL;
+	static char *string[3000] = {NULL};
+	int n = 0;
+	FILE *fd;
+	size_t bufsize = 3000;
 
-    read_file(argv[1]);
+	if (ac != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	fd = fopen(av[1], "r");
+	if (fd == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		exit(EXIT_FAILURE);
+	}
 
-    return (EXIT_SUCCESS);
+
+	for (n = 0; getline(&(string[n]), &bufsize, fd) > 0; n++)
+		;
+	execute(string, stack);
+	free_list(string);
+	fclose(fd);
+	return (0);
 }
 
 /**
- * read_file - Lee un archivo de Monty línea por línea y ejecuta los comandos
- *
- * @filename: Nombre del archivo a leer
+ * execute - executes opcodes
+ * @string: contents of file
+ * @stack: the list
+ * Return: void
  */
-void read_file(char *filename)
+
+void execute(char *string[], stack_t *stack)
 {
-    char buf[BUFFSIZE];
-    FILE *fp;
-    size_t nread;
+	int ln, n, i;
 
-    fp = fopen(filename, "r");
-    if (fp == NULL)
-    {
-        fprintf(stderr, "Error: Can't open file %s\n", filename);
-        exit(EXIT_FAILURE);
-    }
+	instruction_t st[] = {
+		{"pall", pall},
+		{"pint", pint},
+		{"add", add},
+		{"swap", swap},
+		{"pop", pop},
+		{"null", NULL}
+	};
 
-    while ((nread = fread(buf, 1, sizeof(buf), fp)) > 0)
-    {
-        char *line_start = buf;
-        char *line_end = buf + nread;
-        char *line;
-
-        /* Procesar cada línea de texto en el bloque actual */
-        while ((line = get_next_line(&line_start, line_end)) != NULL)
-        {
-            execute_line(line);
-        }
-    }
-
-    fclose(fp);
-}
-
-/**
- * execute_line - Ejecuta un comando de Monty
- *
- * @line: Línea de texto que contiene el comando
- */
-void execute_line(char *line)
-{
-    char *token;
-    stack_t *stack = NULL;
-
-    line = strtrim(line);
-    token = strtok(line, " \t\n");
-    if (token == NULL || strncmp(token, "#", 1) == 0)
-    {
-        free(line);
-        return;
-    }
-if (strcmp(token, "push") == 0)
-    {
-        /* Obtener el valor a insertar */
-        token = strtok(NULL, " \t\n");
-        if (token == NULL || !is_numeric(token))
-        {
-            fprintf(stderr, "L%u: usage: push integer\n", line_number);
-            free(line);
-            exit(EXIT_FAILURE);
-        }
-
-        /* Insertar el valor en la pila */
-        push(&stack, atoi(token));
-    }
-    else if (strcmp(token, "pall") == 0)
-    {
-        /* Imprimir la pila */
-        pall(stack);
-    }
-    else if (strcmp(token, "pint") == 0)
-    {
-        /* Imprimir el valor en la cima de la pila */
-        pint(stack);
-    }
-    else if (strcmp(token, "pop") == 0)
-    {
-        /* Eliminar el valor en la cima de la pila */
-        pop(&stack);
-    }
-    else if (strcmp(token, "swap") == 0)
-    {
-        /* Intercambiar los dos valores superiores de la pila */
-        swap(&stack);
-    }
-    else if (strcmp(token, "add") == 0)
-    {
-        /* Sumar los dos valores superiores de la pila */
-        add(&stack);
-    }
-    else if (strcmp(token, "nop") == 0)
-    {
-        /* No hacer nada */
-    }
-    else
-    {
-        fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-        free(line);
-        exit(EXIT_FAILURE);
-    }
-
-    free(line);
+	for (ln = 1, n = 0; string[n + 1]; n++, ln++)
+	{
+		if (_strcmp("push", string[n]))
+			push(&stack, ln, pushint(string[n], ln));
+		else if (_strcmp("nop", string[n]))
+			;
+		else
+		{
+			i = 0;
+			while (!_strcmp(st[i].opcode, "null"))
+			{
+				if (_strcmp(st[i].opcode, string[n]))
+				{
+					st[i].f(&stack, ln);
+					break;
+				}
+				i++;
+			}
+			if (_strcmp(st[i].opcode, "null") && !_strcmp(string[n], "\n"))
+			{
+				fprintf(stderr, "L%u: unknown instruction %s", ln, string[n]);
+				if (!nlfind(string[n]))
+					fprintf(stderr, "\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+	}
+	free_stack(stack);
 }
