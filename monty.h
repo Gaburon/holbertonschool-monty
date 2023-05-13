@@ -1,10 +1,9 @@
 #ifndef MONTY_H
 #define MONTY_H
-/**
- * monty.h by Andrés Medina
- */
 
-/*LIBRARIES*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
