@@ -20,11 +20,11 @@ void pall(stack_t **stack, unsigned int line_num)
 }
 
 /**
- * push -          Pushes an element to the stack
- * @stack:         pointer to head of stack
- * @line_num:      file's line number
- * @n:             variable
- * Return:         address of new element
+ * push - Pushes an element to the stack
+ * @stack: pointer to head of stack
+ * @line_num: file's line number
+ * @n: variable
+ * Return: address of new element
  */
 
 void push(stack_t **stack, unsigned int line_num, int n)
