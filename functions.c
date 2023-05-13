@@ -4,7 +4,7 @@
  * _strcmp - compares strings
  * @opcode: string to be compared
  * @list: string to be compared
- * Return :0
+ * Return: 0
  */
 int _strcmp(char *opcode, char *list)
 {
