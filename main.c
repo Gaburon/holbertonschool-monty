@@ -74,7 +74,7 @@ void execute(char *string[], stack_t *stack)
                         }
                         if (_strcmp(st[i].opcode, "null") && !_strcmp(string[n], "\n"))
                         {
-                                fprintf(stderr, "L%u: unknown instruction %s", ln, string[n]);
+                                fprintf(stderr, "L%u: unknown instruction %s", ln - 1, string[n]);
                                 if (!nlfind(string[n]))
                                         fprintf(stderr, "\n");
                                 exit(EXIT_FAILURE);
