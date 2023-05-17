@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * main - monty interperter
  * @ac: the number of arguments
