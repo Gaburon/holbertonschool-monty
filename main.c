@@ -28,6 +28,7 @@ int main(int ac, char *av[])
 
         for (n = 0; getline(&(string[n]), &bufsize, fd) > 0; n++)
                 ;
+        n--;
         execute(string, stack);
         free_list(string);
         fclose(fd);
