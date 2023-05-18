@@ -1,9 +1,5 @@
 #ifndef MONTY_H
 #define MONTY_H
-
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -12,7 +8,6 @@
 #include <fcntl.h>
 #include <sys/syscall.h>
 #include <string.h>
-
 
 /*STRUCTURES*/
 /**
@@ -44,7 +39,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_num);
 } instruction_t;
-
 
 /*FUNTIONS*/
 void pint(stack_t **stack, unsigned int line_num);
